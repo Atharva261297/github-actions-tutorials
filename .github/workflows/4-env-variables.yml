@@ -1,0 +1,25 @@
+name: Environment Variables Demo
+on:
+  push:
+    branches:
+      - main
+env:
+  GLOBAL_ENV: "Available everywhere"
+jobs:
+  show-env:
+    runs-on: ubuntu-latest
+    env:
+      JOB_ENV: "Available only in this job"
+    steps:
+      - name: Print workflow and job env
+        run: |
+          echo "GLOBAL_ENV = $GLOBAL_ENV"
+          echo "JOB_ENV = $JOB_ENV"
+      - name: Step-level env override
+        env:
+          STEP_ENV: "Available only in this step"
+          JOB_ENV: "Overridden at step level"
+        run: |
+          echo "GLOBAL_ENV = $GLOBAL_ENV"
+          echo "JOB_ENV = $JOB_ENV"
+          echo "STEP_ENV = $STEP_ENV"

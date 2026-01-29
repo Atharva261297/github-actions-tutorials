@@ -1,0 +1,17 @@
+name: Multi-OS Matrix Workflow
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+    steps:
+      - name: Print OS name
+        run: echo "Running on ${{ matrix.os }}"

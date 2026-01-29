@@ -1,0 +1,11 @@
+name: Scheduled Cron Workflow
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+jobs:
+  show-time:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print current UTC time
+        run: date -u
